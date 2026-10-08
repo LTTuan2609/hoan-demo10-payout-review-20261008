@@ -1,0 +1,33 @@
+name: Frontend QA
+on:
+  push:
+    branches: [main, frontend-finish-approved-20261009]
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Business and withdrawal-history unit tests
+        run: npm test
+      - name: Browser user journeys and accessibility
+        shell: bash
+        run: |
+          export CHROME_PATH="$(command -v google-chrome || command -v google-chrome-stable)"
+          if [ -z "$CHROME_PATH" ]; then echo "Google Chrome missing"; exit 1; fi
+          npm run test:critical
+          npm run test:scenarios
+          npm run test:orders
+          npm run test:tabs
+          npm run test:accessibility
+          npm run test:axe

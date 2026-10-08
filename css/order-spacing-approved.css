@@ -1,0 +1,9 @@
+/* Accepted order-list bug fix, transplanted from Stage 2.
+   Stage 1 design and original JavaScript are unchanged.
+   Keep the summary height consistent while removing 2-line blank space. */
+.order-list .order-row {
+  min-height:116px;
+}
+.order-list .order-row .order-name {
+  height:auto;
+}

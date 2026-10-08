@@ -1,0 +1,19 @@
+{
+  "name": "hoan-frontend-final",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "test:critical": "node tests/critical-flows.cjs",
+    "test:scenarios": "node tests/scenario-audit.cjs",
+    "test:orders": "node tests/order-layout.cjs",
+    "test:tabs": "node tests/tab-ghost.cjs",
+    "test:accessibility": "node tests/interaction-accessibility.cjs",
+    "test:axe": "node tests/axe-audit.cjs"
+  },
+  "devDependencies": {
+    "axe-core": "4.10.3",
+    "playwright-core": "1.64.0"
+  }
+}

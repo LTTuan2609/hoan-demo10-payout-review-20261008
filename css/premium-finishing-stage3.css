@@ -1,0 +1,222 @@
+/* Premium Finishing — Stage 3.
+   Static visual details only. Preserve Stage 1 layouts, brand palette,
+   order spacing fix, JS flows and reduced-motion preference.
+   No transition, animation, fixed heights, or view transitions. */
+:root{
+  --finish-line:#DED5CA;
+  --finish-high:#FFFEFC;
+  --finish-brand:#974C35;
+  --finish-dark:#302A25;
+  --finish-amber:#91601E;
+  --finish-green:#286B48;
+  --finish-red:#994337;
+}
+/* 1. Money hierarchy: featured available amount, quiet in-flight balances. */
+.page .quick-wallet{
+  border-color:#D8C9B9;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.95),
+    0 2px 3px rgba(76,49,30,.035),
+    0 14px 31px rgba(76,49,30,.09);
+}
+.page .quick-main{
+  background:
+    radial-gradient(ellipse at 98% 0%,rgba(255,255,255,.82),transparent 54%),
+    linear-gradient(114deg,#F7F0E5 0%,#E8DAC7 100%);
+}
+.page .quick-main strong{
+  font-weight:750;
+  color:#302721;
+  letter-spacing:-.058em;
+  font-variant-numeric:tabular-nums;
+}
+.page .quick-pending{
+  background:#FCF8F1;
+  border-top-color:#E0D4C5;
+}
+.page .quick-pending>a:first-child b{color:#7F582D}
+.page .quick-pending>a:nth-child(2) b{color:#355E4A}
+.wallet-compact .balance-main{
+  background:
+    radial-gradient(ellipse at 98% -28%,rgba(255,255,255,.8),transparent 60%),
+    linear-gradient(118deg,#F5ECDF 0%,#E5D5BF 100%);
+  border-color:#CEB9A3;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.98),
+    0 2px 4px rgba(91,59,37,.045),
+    0 14px 28px rgba(88,55,31,.105);
+}
+.wallet-compact .balance-main>.amount{
+  color:#29231F;
+  font-weight:780;
+  letter-spacing:-.065em;
+  font-variant-numeric:tabular-nums;
+}
+.wallet-compact .balance-main>.wallet-balance-label{color:#67513F}
+.wallet-compact .waiting-grid{
+  background:linear-gradient(180deg,#FFFEFC,#FCFAF7);
+  border-color:#DFD5CA;
+  box-shadow:inset 0 1px 0 #FFF,0 7px 16px rgba(65,43,28,.045);
+}
+.wallet-compact .waiting-grid>a:first-child .wallet-wait-label .icon{color:#A37231}
+.wallet-compact .waiting-grid>a:nth-child(2) .wallet-wait-label .icon{color:#3D7959}
+.wallet-compact .waiting-grid strong{font-weight:750;font-variant-numeric:tabular-nums}
+.wallet-compact .waiting-grid>a:first-child strong{color:#70512E}
+.wallet-compact .waiting-grid>a:nth-child(2) strong{color:#355F4A}
+.wallet-compact .payout-bank-card--detail{
+  background:linear-gradient(165deg,#FFFEFD 0%,#FBF8F2 100%);
+  border-color:#DCD1C5;
+  box-shadow:inset 0 1px 0 #FFF,0 8px 18px rgba(72,48,34,.06);
+}
+.wallet-compact .payout-bank-card--detail .payout-detail-field:nth-child(2){
+  background:#F7F1E8;
+  border-color:#EDE0D1;
+}
+.wallet-compact .payout-bank-card--detail .payout-detail-field:first-child dd{
+  color:#2E2924;font-weight:750;letter-spacing:.012em;
+}
+.payout-card-status--active,.payout-card-status--verified{
+  background:#EAF1E9;
+  color:#2D6947;
+  border:1px solid #CFDFD0;
+}
+.wallet-compact .wallet-movement-icon{
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.8);
+}
+.wallet-compact .wallet-movement-row .movement-heading>strong{
+  font-weight:750;
+  font-variant-numeric:tabular-nums;
+  letter-spacing:-.035em;
+}
+/* 2. Membership: crisp medal, legible progress and clear current privilege. */
+.page .member-hero{
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.96),
+    0 2px 4px rgba(66,51,38,.055),
+    0 18px 34px rgba(66,51,38,.115);
+}
+.page .member-hero-art .member-medal{
+  filter:drop-shadow(0 9px 12px rgba(70,56,43,.17));
+}
+.page .member-medal .member-symbol{
+  filter:drop-shadow(0 1px 1px rgba(255,255,255,.32));
+}
+.page .member-hero .member-bonus strong{
+  color:#8B422F;
+  font-weight:780;
+  letter-spacing:-.052em;
+  font-variant-numeric:tabular-nums;
+}
+.page .member-hero .member-bonus small{color:#524A43;font-weight:550}
+.page .member-progress{
+  background:linear-gradient(180deg,#FFFEFC,#FCF9F5);
+  border-color:#E0D5C8;
+  box-shadow:inset 0 1px 0 #FFF,0 8px 20px rgba(77,53,35,.05);
+}
+.page .member-progress-key strong{font-weight:750;color:#8A4531}
+.page .member-progress-track{
+  background:#E9DED0;
+  box-shadow:inset 0 1px 3px rgba(79,52,30,.12);
+}
+.page .member-progress-track>span{
+  background:linear-gradient(90deg,#A05539 0%,#C37847 65%,#D49453 100%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.32);
+}
+.page .member-progress-values strong{font-weight:750;letter-spacing:-.025em}
+.page .member-level{
+  border-color:#E2D8CE;
+  background:linear-gradient(180deg,#FFFEFC,#FEFCF9);
+}
+.page .member-level.current{
+  border-color:#B9856A;
+  background:linear-gradient(105deg,#F7EDE3,#FFFEFC 82%);
+  box-shadow:inset 3px 0 0 #A95D42,0 6px 15px rgba(86,51,33,.065);
+}
+.page .member-current{
+  background:#F0DFD1;
+  color:#81402C;
+  font-weight:700;
+  box-shadow:inset 0 0 0 1px rgba(141,75,43,.12);
+}
+.page .member-applied{
+  background:#FCF0D3;color:#825818;
+  box-shadow:inset 0 0 0 1px rgba(161,110,34,.12);
+}
+/* 3. Order states: stronger semantic distinction without moving content. */
+.page .order-visual-status{
+  font-weight:700;
+
+  box-shadow:inset 0 0 0 1px rgba(151,105,69,.22),inset 0 1px 0 rgba(255,255,255,.6);
+}
+.page .order-visual-status--amber{background:#FDF0D6;color:#775018;box-shadow:inset 0 0 0 1px #E8D8B5,inset 0 1px 0 #FFF8E8}
+.page .order-visual-status--green{background:#EAF4EA;color:#236343;box-shadow:inset 0 0 0 1px #D2E4D4,inset 0 1px 0 #F8FFF8}
+.page .order-visual-status--red{background:#F9E9E5;color:#923F37;box-shadow:inset 0 0 0 1px #F0D4CD,inset 0 1px 0 #FFF8F6}
+.page .order-mini-rail i{background:#E8E1D8}
+.page .order-mini-rail i.done{background:#B78F4C}
+.page .order-mini-rail i.next{background:#D9C8A7}
+.page .order-disclosure[data-state="VALIDATED"] .order-mini-rail i.done,
+.page .order-disclosure[data-state="RELEASED"] .order-mini-rail i.done{
+  background:#397B58;
+}
+.page .order-mini-count{color:#675F55;font-weight:700}
+.page .order-row .order-meta{color:#70685F;font-variant-numeric:tabular-nums}
+.page .order-row .order-amount b{
+  color:#236347;
+  font-weight:760;
+  font-variant-numeric:tabular-nums;
+}
+.page .order-inline-detail .earnings-breakdown{
+  border-color:#D8E1D4;
+  background:linear-gradient(180deg,#F9FAF5,#F4F6F0);
+}
+.page .earnings-breakdown .earnings-total strong{
+  color:#286745;
+  font-weight:760;
+  letter-spacing:-.035em;
+}
+/* 4. Quiet but legible empty, progress, errors and disabled actions. */
+.page .empty-icon{
+  background:linear-gradient(145deg,#F5EEE6,#E9DDD0);
+  color:#86513A;
+  box-shadow:inset 0 1px 0 #FFF,0 5px 12px rgba(76,55,35,.08);
+}
+.page .empty h2{color:#342D27;font-weight:700}
+.page .empty p{color:#71655A;line-height:1.55}
+.page .inline-error{
+  background:#FFF4F0;
+  border:1px solid #EDCABE;
+  border-radius:12px;
+  padding:11px 12px;
+  color:#973D32;
+  line-height:1.5;
+}
+.page .inline-error>.icon{color:#A04B3E}
+.page .link-progress{
+  background:#F8F2EA;
+  border:1px solid #E9DCCE;
+  border-radius:12px;
+  padding:10px 12px;
+  color:#655347;
+}
+.page .primary:disabled{
+  background:#DAD4C9;
+  border-color:#CDC6BB;
+  color:#4E453B;
+  box-shadow:none;
+  opacity:1;
+}
+.page .field[aria-invalid="true"],.page .input-wrap.invalid{
+  border-color:#BD6655;
+  box-shadow:0 0 0 2px rgba(185,88,73,.07);
+}
+@media(prefers-contrast:more){
+  .page .order-visual-status--amber{box-shadow:inset 0 0 0 1px #866022}
+  .page .order-visual-status--green{box-shadow:inset 0 0 0 1px #346F4B}
+  .page .order-visual-status--red{box-shadow:inset 0 0 0 1px #994337}
+  .page .inline-error{border-color:#A34737}
+}
+
+/* Stop iOS Safari's native touch flash on order disclosures only.
+   Keep keyboard focus-visible outline and normal open/close behavior. */
+.page .order-disclosure > summary {
+  -webkit-tap-highlight-color: transparent;
+}

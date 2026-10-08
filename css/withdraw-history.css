@@ -1,0 +1,99 @@
+/* HOÀN Withdrawal history | Approved UX — recorded withdrawals only. */
+.page .wh-history{display:grid;gap:16px;min-width:0;padding-bottom:24px}
+.page .wh-summary{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.page .wh-summary__metric{min-width:0;display:flex;flex-direction:column;gap:8px;padding:14px 13px 15px;border-radius:18px;background:linear-gradient(145deg,#F4F9F2,#F6F5EF);border:1px solid #DCE7D8;box-shadow:0 5px 13px rgba(53,63,42,.035)}
+.page .wh-summary__metric:nth-child(2){background:linear-gradient(145deg,#FBF5E8,#F9F5ED);border-color:#E9DDC7}
+.page .wh-summary__icon{width:32px;height:32px;border-radius:12px;display:grid;place-items:center;color:#286545;background:#DDEFE2}
+.page .wh-summary__icon--pending{color:#83591E;background:#F5E4C9}
+.page .wh-summary__icon .icon{width:18px;height:18px}
+.page .wh-summary__label{font-size:.78rem;color:#63584C;line-height:1.4}
+.page .wh-summary__metric>strong{font-size:clamp(1.08rem,4.9vw,1.35rem);font-weight:760;color:#2E2925;font-variant-numeric:tabular-nums;letter-spacing:-.045em;line-height:1.25;white-space:nowrap}
+.page .wh-filter-section{display:grid;gap:10px}
+.page .wh-filter-section>h2{font-size:1rem;letter-spacing:-.02em;font-weight:740;color:#342E29;margin:0}
+.page .wh-filters{display:flex;min-width:0;max-width:100%;gap:7px;overflow-x:auto;overscroll-behavior-x:contain;padding:1px 0 6px;scrollbar-width:none}
+.page .wh-filters::-webkit-scrollbar{display:none}
+.page .wh-filter{display:inline-flex;align-items:center;justify-content:center;gap:6px;flex:none;min-height:39px;padding:8px 11px;border:1px solid #E1D8CA;border-radius:999px;background:#FFFEFC;color:#61564B;font-size:.79rem;font-weight:600;line-height:1.2;white-space:nowrap;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.page .wh-filter>span{font-variant-numeric:tabular-nums;color:#80766C;font-size:.74rem}
+.page .wh-filter--active{background:#86513A;color:#FFF;border-color:#86513A;box-shadow:0 3px 8px rgba(98,58,34,.14)}
+.page .wh-filter--active>span{color:#FFF0E2}
+.page .wh-list{display:grid;gap:12px;min-width:0}
+.page .wh-card{position:relative;min-width:0;padding:17px 16px 13px;border:1px solid #DFD8CF;border-radius:19px;background:#FFFEFC;box-shadow:0 1px 3px rgba(75,51,34,.035),0 12px 25px rgba(75,51,34,.055);overflow:hidden}
+.page .wh-card::before{content:"";position:absolute;inset:0 auto 0 0;width:3px;background:#379369}
+.page .wh-card--pending::before{background:#C78A35}
+.page .wh-card--refunded::before{background:#B86A59}
+.page .wh-card__top{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.page .wh-state{display:inline-flex;align-items:center;gap:6px;min-height:31px;padding:5px 9px;border-radius:999px;white-space:nowrap;font-size:.78rem;font-weight:750;line-height:1.2}
+.page .wh-state .icon{width:15px;height:15px;flex-shrink:0}
+.page .wh-state--paid{color:#246643;background:#E4F2E7}
+.page .wh-state--pending{color:#80591F;background:#F9EDD9}
+.page .wh-state--refunded{color:#984539;background:#F8E8E4}
+.page .wh-card__id{min-width:0;max-width:53%;overflow-wrap:anywhere;color:#8A7C70;font-size:.74rem;text-align:right;font-variant-numeric:tabular-nums}
+.page .wh-card__eyebrow{font-size:.77rem;color:#776B60;margin:17px 0 1px;line-height:1.3}
+.page .wh-card__amount{display:block;font-size:clamp(1.7rem,7.5vw,2rem);font-weight:780;line-height:1.32;letter-spacing:-.055em;color:#2C2825;font-variant-numeric:tabular-nums}
+.page .wh-target{display:flex;align-items:center;gap:11px;min-width:0;padding:11px 0 12px;border-bottom:1px solid #ECE6DC}
+.page .wh-target__icon{display:grid;place-items:center;flex:0 0 36px;width:36px;height:36px;border-radius:12px;background:#F1EBE2;color:#78604C}
+.page .wh-target__icon .icon{width:18px;height:18px}
+.page .wh-target__body{min-width:0;display:grid;gap:3px}
+.page .wh-target__label{color:#81766B;font-size:.74rem;line-height:1.25}
+.page .wh-target__body>strong{font-size:.9rem;line-height:1.35;font-weight:720;overflow-wrap:anywhere;color:#34302C}
+.page .wh-note{display:flex;align-items:flex-start;gap:8px;margin:11px 0 12px;padding:10px 11px;border-radius:11px;font-size:.78rem;line-height:1.5}
+.page .wh-note>.icon{flex-shrink:0;width:16px;height:16px;margin-top:1px}
+.page .wh-note--paid{background:#F0F7EE;color:#326342}
+.page .wh-note--pending{background:#FCF5E9;color:#775522}
+.page .wh-note--refunded{background:#FCF0EC;color:#984B3C}
+.page .wh-card__footer{display:flex;align-items:center;justify-content:space-between;gap:8px;border-top:1px solid #F0EAE1;padding-top:11px}
+.page .wh-requested{display:grid;gap:2px;min-width:0}
+.page .wh-requested span{color:#84786C;font-size:.73rem;line-height:1.25}
+.page .wh-requested strong{color:#64584E;font-weight:600;font-size:.78rem;line-height:1.35;font-variant-numeric:tabular-nums}
+.page .wh-card__cta{display:flex;align-items:center;justify-content:center;min-width:100px;min-height:44px;gap:5px;padding:7px 12px;border-radius:99px;background:#F5F0E9;border:1px solid #E6DCCC;text-decoration:none;color:#77503D;font-weight:730;font-size:.8rem;white-space:nowrap;-webkit-tap-highlight-color:transparent}
+.page .wh-card__cta .icon{width:15px;height:15px}
+.page .wh-footnote{font-size:.76rem;color:#786D62;line-height:1.5;margin:0}
+.page .wh-empty{padding:28px 15px;background:#FFFEFC;border:1px solid #E5DBCF;border-radius:18px;display:grid;justify-items:center;gap:8px;text-align:center}
+.page .wh-empty>span{width:42px;height:42px;border-radius:50%;background:#F0E9DF;display:grid;place-items:center;color:#8D6145}
+.page .wh-empty>span .icon{width:21px;height:21px}
+.page .wh-empty>strong{color:#493B31;font-size:.9rem}
+.page .wh-empty>p{color:#776C61;font-size:.8rem;line-height:1.5}
+.page .wh-filter:focus-visible,.page .wh-card__cta:focus-visible,@media(max-width:350px){
+ .page .wh-card{padding:14px 12px 11px}
+ .page .wh-summary__metric{padding:12px 10px}
+ .page .wh-card__footer{gap:5px}
+ .page .wh-card__cta{min-width:92px;padding:7px 9px}
+ .page .wh-requested strong{font-size:.74rem}
+}
+@media(prefers-reduced-motion:reduce){
+ .page .wh-history *{scroll-behavior:auto!important}
+}
+
+
+/* Simulation-only single CTA: the complete cash overview goes to Wallet. */
+.page .home-v2 .quick-wallet-link{
+  display:block;
+  color:inherit;
+  text-decoration:none;
+  cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
+}
+.page .home-v2 .quick-wallet-link:focus-visible{
+  outline:3px solid #945039;
+  outline-offset:3px;
+}
+.page .home-v2 .quick-wallet-link .quick-pending-item{
+  display:block;
+  padding:10px 14px;
+  min-width:0;
+  min-height:60px;
+}
+.page .home-v2 .quick-wallet-link .quick-pending-item + .quick-pending-item{
+  border-left:1px solid #E0D4C5;
+}
+.page .home-v2 .quick-wallet-link .quick-pending-item:first-child b{color:#7F582D}
+.page .home-v2 .quick-wallet-link .quick-pending-item:nth-child(2) b{color:#355E4A}
+.page .home-v2 .quick-wallet-link .round-arrow{pointer-events:none}
+
+/* A refund is the outcome, not a guessed bank-validation failure. */
+.page .wh-note--refunded strong{font-weight:780;color:#8B4032}
+.page .wh-note__reason{display:block;margin-top:3px;line-height:1.5}
+@media(max-width:350px){
+  .page .wh-state--refunded{white-space:normal;font-size:.74rem;line-height:1.3}
+  .page .home-v2 .quick-wallet-link .quick-pending-item{padding:10px 11px}
+}
