@@ -13,7 +13,8 @@ const serve=http.createServer((req,res)=>{const url=new URL(req.url,'http://x');
   page.on('pageerror',e=>findings.push({route:'any',width,id:'browser-uncaught',reason:e.message}));
   for(const route of routes){
    if(width===320&&!['/','/orders','/wallet','/payout/edit','/withdraw','/rank'].includes(route))continue;
-   await page.goto(origin+'/#'+route,{waitUntil:'networkidle'});
+   await page.goto(origin+'/#'+route,{waitUntil:'domcontentloaded',timeout:30000});
+   await page.locator('main h1').waitFor({timeout:20000});
    await page.addScriptTag({path:axePath});
    const r=await page.evaluate(async()=>{const x=await axe.run(document,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21a','wcag21aa','wcag22aa']}});return{violations:x.violations.map(v=>({id:v.id,impact:v.impact,description:v.description,help:v.help,helpUrl:v.helpUrl,nodes:v.nodes.slice(0,5).map(n=>({target:n.target,html:n.html.slice(0,180),summary:n.failureSummary?.slice(0,500)})),nodeCount:v.nodes.length})),incomplete:x.incomplete.map(v=>({id:v.id,impact:v.impact,nodeCount:v.nodes.length})),passes:x.passes.length}});
    runs.push({width,route,violations:r.violations.length,passes:r.passes,incomplete:r.incomplete});
