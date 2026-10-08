@@ -25,7 +25,7 @@ test('saved receiving account list retains explicit account number and owner row
  assert.ok(html.includes('Số tài khoản'));
  assert.ok(html.includes('Chủ tài khoản'));
  assert.ok(html.includes('payout-saved-actions'));
- assert.ok(!html.includes('payout-saved-copy'), 'approved bank manager must not be collapsed');
+ assert.ok(html.includes('<dl class="payout-saved-fields">'), 'account number and owner must stay separate');
 });
 
 test('unverified/failed/empty accounts are visibly distinct and actionable',()=>{
