@@ -35,6 +35,15 @@ const server=http.createServer((req,res)=>{
   assert.equal(await page.locator('.wh-card').count(),0);
   await page.goto(base+'/wallet',{waitUntil:'load'});
   assert.ok((await page.locator('main').innerText()).includes('156.400 ₫'),'Balance must remain original');
+  const payoutCard=page.locator('.payout-bank-card--detail');
+  assert.equal(await payoutCard.count(),1,'Approved separate receiving-account card missing');
+  assert.equal(await payoutCard.locator('.payout-detail-field').count(),2,'Bank number and account holder must be separate');
+  const payoutInfo=await payoutCard.innerText();
+  assert.ok(payoutInfo.includes('Số tài khoản')&&payoutInfo.includes('Chủ tài khoản')&&payoutInfo.includes('••••4821'),'Receiving-account card information lost');
+  await page.goto(base+'/payout',{waitUntil:'load'});
+  assert.equal(await page.locator('.payout-saved-fields').count(),1,'Approved saved-account detail grid missing');
+  assert.equal(await page.locator('.payout-saved-field').count(),2,'Saved bank must expose number and owner separately');
+  assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'Account manager horizontal overflow');
   assert.deepEqual(errors,[],'JS errors '+width);
   console.log('PASS UX '+width+'px: four card targets → Ví, actual history, filters, pending, wallet invariant, no overflow');
   await page.close();
