@@ -7,7 +7,7 @@ const server=http.createServer((req,res)=>{let p=new URL(req.url,'http://x').pat
  const ctx=await browser.newContext({viewport:{width:390,height:844},hasTouch:true,isMobile:true});
  await ctx.grantPermissions(['clipboard-read','clipboard-write'],{origin});const page=await ctx.newPage();const errors=[];
  page.on('pageerror',e=>errors.push(e.message));
- const goto=route=>page.goto(origin+'/#'+route,{waitUntil:'networkidle'});
+ const goto=route=>page.goto(origin+'/#'+route,{waitUntil:'load'});
  await goto('/withdraw');
  assert.equal(await page.locator('form[data-form=amount]').count(),1,'withdraw form missing');
  await page.locator('#amount').fill('49.999');

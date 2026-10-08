@@ -15,13 +15,13 @@ const server=http.createServer((req,res)=>{
   const page=await browser.newPage({viewport:{width,height:844},hasTouch:true,isMobile:true});
   const errors=[];page.on('pageerror',e=>errors.push(e.message));
   for(const target of ['.quick-main','.round-arrow','.quick-pending-item:first-child','.quick-pending-item:last-child']){
-   await page.goto(base+'/',{waitUntil:'networkidle'});
+   await page.goto(base+'/',{waitUntil:'load'});
    assert.equal(await page.locator('.overview-heading a').count(),0,'Duplicate Xem ví');
    assert.equal(await page.locator('.quick-wallet').evaluate(e=>e.tagName==='A'&&e.getAttribute('href')==='#/wallet'&&e.querySelectorAll('a,button').length===0),true,'Card must be one semantic link');
    await page.locator(target).click();
    assert.equal(new URL(page.url()).hash,'#/wallet','Each cashback region must open Wallet');
   }
-  await page.goto(base+'/withdrawals',{waitUntil:'networkidle'});
+  await page.goto(base+'/withdrawals',{waitUntil:'load'});
   assert.equal(await page.locator('.wh-preview-switch').count(),0,'No preview switch in main');
   assert.equal(await page.locator('.wh-card').count(),1,'Only recorded W0 withdrawal expected');
   assert.ok((await page.locator('.wh-card').innerText()).includes('Đã chuyển'),'Real W0 status');
@@ -30,10 +30,10 @@ const server=http.createServer((req,res)=>{
   assert.ok(size.scroll<=size.screen+1,'Horizontal overflow '+width+' '+JSON.stringify(size));
   await page.locator('[data-action=history-filter][data-status=PENDING]').click();
   assert.equal(await page.locator('.wh-card').count(),0,'No pending withdrawals yet');
-  await page.goto(base+'/withdrawals/pending',{waitUntil:'networkidle'});
+  await page.goto(base+'/withdrawals/pending',{waitUntil:'load'});
   assert.equal(await page.locator('main h1').innerText(),'Tiền đang rút');
   assert.equal(await page.locator('.wh-card').count(),0);
-  await page.goto(base+'/wallet',{waitUntil:'networkidle'});
+  await page.goto(base+'/wallet',{waitUntil:'load'});
   assert.ok((await page.locator('main').innerText()).includes('156.400 ₫'),'Balance must remain original');
   assert.deepEqual(errors,[],'JS errors '+width);
   console.log('PASS UX '+width+'px: four card targets → Ví, actual history, filters, pending, wallet invariant, no overflow');
@@ -41,18 +41,18 @@ const server=http.createServer((req,res)=>{
  }
  const page=await browser.newPage({viewport:{width:390,height:844},hasTouch:true,isMobile:true});
  const errors=[];page.on('pageerror',e=>errors.push(e.message));
- await page.goto(base+'/withdraw',{waitUntil:'networkidle'});
+ await page.goto(base+'/withdraw',{waitUntil:'load'});
  await page.locator('#amount').fill('50.000');
  await page.locator('form[data-form=amount] button.primary').click();
  assert.equal(new URL(page.url()).hash,'#/withdraw/review');
  await page.locator('[data-action=withdraw]').click();
  await page.waitForURL(/#\/withdraw\/result\//,{timeout:10000});
- await page.goto(base+'/withdrawals/pending',{waitUntil:'networkidle'});
+ await page.goto(base+'/withdrawals/pending',{waitUntil:'load'});
  assert.equal(await page.locator('.wh-card--pending').count(),1,'Pending request must be recorded');
  assert.ok((await page.locator('.wh-card--pending').innerText()).includes('50.000 ₫'));
  await page.locator('[data-action=review]').click();
  await page.locator('[data-action=reject]').click();
- await page.goto(base+'/withdrawals',{waitUntil:'networkidle'});
+ await page.goto(base+'/withdrawals',{waitUntil:'load'});
  await page.locator('[data-action=history-filter][data-status=REJECTED]').click();
  assert.equal(await page.locator('.wh-card--refunded').count(),1);
  const refunded=await page.locator('.wh-card--refunded').innerText();
@@ -60,7 +60,7 @@ const server=http.createServer((req,res)=>{
  assert.ok(!refunded.includes('chưa hợp lệ'),'No fabricated account-validation rejection');
  await page.locator('.wh-card__cta').click();
  assert.ok((await page.locator('main').innerText()).includes('Đã hoàn tiền về Ví'));
- await page.goto(base+'/wallet',{waitUntil:'networkidle'});
+ await page.goto(base+'/wallet',{waitUntil:'load'});
  assert.ok((await page.locator('main').innerText()).includes('156.400 ₫'),'Refund restored available balance');
  assert.deepEqual(errors,[]);
  console.log('PASS UX withdrawal: pending → operator rejection → refunded history + restored Wallet');
