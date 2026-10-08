@@ -1,6 +1,6 @@
 import {cashbackBreakdown,ledgerScreen} from './earnings.mjs?v=10';
 import {home,wallet} from './overview.mjs?v=10';
-import {rankView} from './rank-view.mjs?v=1';
+import {rankView} from './rank-view.mjs?v=20261008-r2';
 import {bankOptions,bankName,payoutSavedAccounts} from './payout-card.mjs?v=10';
 import {esc,money,date,icon,art,button,top,menu,note,status,badge,empty} from './ui.mjs?v=10';
 const section=(title,body,link='')=>`<section class="section"><div class="section-head"><h2>${title}</h2>${link}</div>${body}</section>`;
