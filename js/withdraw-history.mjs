@@ -40,11 +40,11 @@ export function withdrawalHistoryScreen(s,v={},options={}){
  return `${top(onlyPending?'Tiền đang rút':'Lịch sử rút tiền',onlyPending?'Những yêu cầu chưa có kết quả chuyển tiền cuối cùng.':'Số tiền, tài khoản nhận và trạng thái của từng yêu cầu.')}
  <section class="wh-history" aria-label="Theo dõi lịch sử rút tiền">
    <div class="wh-summary" aria-label="Tóm tắt lịch sử">
-    <div class="wh-summary__metric"><span class="wh-summary__icon wh-summary__icon--paid">${icon('check')}</span><span class="wh-summary__label">Đã chuyển · ${paidCount} yêu cầu</span><strong>${money(sum(all,'PAID'))}</strong></div>
+    <div class="wh-summary__metric"><span class="wh-summary__icon wh-summary__icon--paid">${icon('check')}</span><span class="wh-summary__label">Đã chuyển trong danh sách · ${paidCount} yêu cầu</span><strong>${money(sum(all,'PAID'))}</strong></div>
     <div class="wh-summary__metric"><span class="wh-summary__icon wh-summary__icon--pending">${icon('clock')}</span><span class="wh-summary__label">Đang rút · ${pendingCount} yêu cầu</span><strong>${money(sum(all,'PENDING'))}</strong></div>
    </div>
    ${onlyPending?'<a class="wh-card__cta" href="#/withdrawals">Xem toàn bộ lịch sử</a>':`<div class="wh-filter-section"><h2>Yêu cầu rút tiền</h2><div class="wh-filters" role="group" aria-label="Lọc yêu cầu theo trạng thái">${filterBar}</div></div>`}
    <div class="wh-list" aria-live="polite">${rows.length?rows.map(card).join(''):`<div class="wh-empty"><span>${icon('wallet')}</span><strong>${onlyPending?'Không có tiền đang rút':'Không có yêu cầu ở trạng thái này'}</strong><p>${onlyPending?'Các yêu cầu đã xử lý vẫn có trong lịch sử.':'Chọn trạng thái khác để tiếp tục theo dõi.'}</p></div>`}</div>
-   <p class="wh-footnote">Tiền đang rút chưa được tính là đã chuyển. Yêu cầu bị từ chối chỉ được hiển thị đã hoàn Ví sau khi số dư được cộng lại.</p>
+   <p class="wh-footnote">Các tổng chỉ tính yêu cầu đã lưu trong danh sách, không phải tổng đã rút mọi thời điểm. Tiền đang rút chưa được tính là đã chuyển.</p>
  </section>`;
 }
