@@ -1,0 +1,128 @@
+/* Payout account preview: only the verified / pending / rejected wallet card. */
+.wallet-compact .payout-account-section{margin-top:12px}
+.wallet-compact .payout-card-heading{margin-bottom:5px}
+.wallet-compact .payout-card-heading h2{font-weight:650}
+.wallet-compact .payout-bank-card--visual{
+  padding:11px 12px;
+  background:#FFFEFC;
+  border-color:#DDD8CF;
+  border-radius:15px;
+  box-shadow:0 2px 9px rgba(42,41,31,.035);
+}
+.wallet-compact .payout-bank-card--visual .payout-bank-card-top{
+  display:flex;
+  flex-direction:row;
+  gap:10px;
+  align-items:center;
+  min-width:0;
+}
+.wallet-compact .payout-bank-card--visual .payout-card-icon{
+  display:grid;
+  place-items:center;
+  flex:0 0 42px;
+  width:42px;
+  height:42px;
+  border-radius:12px;
+  background:#E7F2EA;
+  color:#2A7657;
+}
+.wallet-compact .payout-bank-card--visual .payout-card-icon .icon{
+  width:21px;height:21px;
+  stroke-width:1.8;
+}
+.wallet-compact .payout-bank-card--visual .payout-card-identity{
+  flex:1 1 0;
+  min-width:0;
+}
+.wallet-compact .payout-identity-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:7px;
+  min-width:0;
+}
+.wallet-compact .payout-identity-head>strong{
+  flex:1 1 auto;
+  min-width:0;
+  font-size:.91rem;
+  line-height:1.4;
+  font-weight:650;
+  letter-spacing:-.02em;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+  overflow:hidden;
+  color:#292722;
+}
+.wallet-compact .payout-identity-head .payout-card-status{
+  flex:0 0 auto;
+  display:inline-flex;
+  align-items:center;
+  gap:3px;
+  padding:4px 6px;
+  font-size:.69rem;
+  line-height:1.3;
+  white-space:nowrap;
+  font-weight:600;
+  border-radius:999px;
+}
+.wallet-compact .payout-identity-head .payout-card-status--verified{
+  background:#E7F4EB;color:#236F4B;
+}
+.wallet-compact .payout-identity-head .payout-card-status--pending{
+  background:#FFF4DF;color:#80591D;
+}
+.wallet-compact .payout-identity-head .payout-card-status--rejected{
+  background:#FCEDEB;color:#9F4039;
+}
+.wallet-compact .payout-identity-head .payout-card-status>.icon{width:12px;height:12px;stroke-width:2}
+.wallet-compact .payout-identity-sub{
+  display:flex;
+  align-items:baseline;
+  gap:7px;
+  min-width:0;
+  margin-top:2px;
+  line-height:1.35;
+}
+.wallet-compact .payout-identity-sub .payout-card-number{
+  color:#655F56;
+  font-size:.79rem;
+  flex:0 0 auto;
+  letter-spacing:.005em;
+  white-space:nowrap;
+}
+.wallet-compact .payout-card-holder-inline{
+  min-width:0;
+  flex:1 1 auto;
+  color:#655F56;
+  font-weight:500;
+  font-size:.75rem;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+  overflow:hidden;
+}
+.wallet-compact .payout-card-holder-inline:before{
+  content:'·';
+  margin-right:7px;
+  color:#A29A90;
+}
+.wallet-compact .payout-bank-card--visual .payout-bank-card-footer{
+  padding:7px 0 0 52px;
+  margin-top:7px;
+  border-top:1px solid #F0ECE6;
+}
+.wallet-compact .payout-bank-card--visual .payout-card-hint{
+  font-size:.76rem;
+  line-height:1.4;
+}
+.wallet-compact .payout-bank-card--visual.payout-bank-card--pending .payout-card-icon{background:#FFF4E1;color:#8A631B}
+.wallet-compact .payout-bank-card--visual.payout-bank-card--rejected .payout-card-icon{background:#FCEDEA;color:#9F4039}
+@media(max-width:360px){
+  .wallet-compact .payout-bank-card--visual{padding:10px}
+  .wallet-compact .payout-bank-card--visual .payout-bank-card-top{gap:8px}
+  .wallet-compact .payout-bank-card--visual .payout-card-icon{flex-basis:38px;width:38px;height:38px}
+  .wallet-compact .payout-identity-head>strong{font-size:.84rem}
+  .wallet-compact .payout-identity-head .payout-card-status{font-size:.63rem;padding:4px 5px}
+  .wallet-compact .payout-identity-sub .payout-card-number{font-size:.72rem}
+  .wallet-compact .payout-card-holder-inline{font-size:.70rem}
+  .wallet-compact .payout-bank-card--visual .payout-bank-card-footer{padding-left:46px}
+}

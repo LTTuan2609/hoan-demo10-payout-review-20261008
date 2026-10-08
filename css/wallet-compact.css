@@ -1,0 +1,238 @@
+/* Compact Wallet only: scannable money, movement and recipient blocks.
+   Grid/spacing changes are isolated to .wallet-compact. */
+.wallet-compact .overview-heading{min-height:35px;margin-bottom:5px}
+.wallet-compact .overview-heading h1{font-weight:600;letter-spacing:-.035em}
+.wallet-compact .balance-main{
+ display:grid;
+ grid-template-columns:minmax(0,1fr) auto;
+ grid-template-rows:auto auto;
+ align-items:center;
+ gap:2px 10px;
+ min-height:94px;
+ padding:14px 16px!important;
+ border-radius:16px;
+ background:linear-gradient(116deg,#F1E8D9 0%,#EAE1D2 100%);
+ border:1px solid #DED3C2;
+ box-shadow:0 3px 11px rgba(71,52,32,.045);
+}
+.wallet-compact .balance-main>.wallet-balance-label{
+ display:inline-flex;
+ align-items:center;
+ gap:6px;
+ grid-column:1;
+ grid-row:1;
+ font-size:.78rem;
+ line-height:1.5;
+ color:#685B4E;
+ margin:0;
+}
+.wallet-compact .wallet-balance-label>.icon{width:16px;height:16px;stroke-width:1.8}
+.wallet-compact .balance-main>.amount{
+ grid-column:1;
+ grid-row:2;
+ min-width:0;
+ font-size:1.8rem;
+ font-weight:650;
+ letter-spacing:-.055em;
+ line-height:1.23;
+ overflow-wrap:anywhere;
+ white-space:normal;
+ margin:0;
+ color:#29261F;
+}
+.wallet-compact .balance-main>.primary{
+ grid-column:2;
+ grid-row:1/3;
+ width:auto;
+ max-width:100%;
+ align-self:center;
+ justify-self:end;
+ flex-basis:auto;
+ min-height:44px;
+ margin:0!important;
+ padding:9px 12px;
+ border-radius:11px;
+ font-size:.855rem;
+ font-weight:600;
+ gap:6px;
+ white-space:nowrap;
+}
+.wallet-compact .balance-main>.primary .icon{height:18px;width:18px}
+.wallet-compact .balance-main>.min-withdraw{grid-column:1/-1;grid-row:3;margin:4px 0 0;font-size:.77rem;line-height:1.45}
+.wallet-compact .waiting-money{margin-top:10px}
+.wallet-compact .waiting-grid{background:var(--surface);border-radius:14px;border-color:#E2DDD5}
+.wallet-compact .waiting-grid>a{
+ display:flex;
+ flex-direction:column;
+ justify-content:center;
+ padding:10px 12px;
+ gap:3px;
+ min-height:62px;
+}
+.wallet-compact .wallet-wait-label{
+ display:inline-flex;
+ align-items:center;
+ gap:6px;
+ min-width:0;
+ color:#71685D;
+ font-size:.755rem;
+ line-height:1.35;
+ white-space:nowrap;
+}
+.wallet-compact .wallet-wait-label .icon{width:15px;height:15px;flex:none;stroke-width:1.8;color:#976F39}
+.wallet-compact .waiting-grid>a:nth-child(2) .wallet-wait-label .icon{color:#487A5F}
+.wallet-compact .waiting-grid strong{
+ font-weight:650;
+ font-size:1.09rem;
+ letter-spacing:-.035em;
+ line-height:1.3;
+ color:var(--ink);
+ margin:0;
+}
+.wallet-compact .payout-account-section{margin-top:13px}
+.wallet-compact .payout-card-heading{margin-bottom:5px}
+.wallet-compact .payout-card-heading h2{font-weight:650;font-size:1rem}
+.wallet-compact .payout-card-detail{min-height:38px;font-size:.79rem}
+.wallet-compact .payout-bank-card{padding:12px 13px;border-radius:15px}
+.wallet-compact .payout-bank-card-top{
+ display:grid;
+ grid-template-columns:38px minmax(0,1fr) auto;
+ gap:8px 9px;
+ align-items:center;
+}
+.wallet-compact .payout-card-icon{width:38px;height:38px;border-radius:12px}
+.wallet-compact .payout-card-icon .icon{width:21px;height:21px}
+.wallet-compact .payout-card-identity strong{font-weight:650;font-size:.93rem}
+.wallet-compact .payout-card-number{font-size:.82rem}
+.wallet-compact .payout-card-status{padding:5px 7px;font-size:.705rem;gap:4px}
+.wallet-compact .payout-card-status .icon{height:13px;width:13px}
+.wallet-compact .payout-bank-card-footer{
+ margin-top:8px;
+ padding-top:8px;
+ border-top:1px solid var(--line);
+ gap:6px 10px;
+}
+.wallet-compact .payout-card-holder{
+ display:flex;
+ flex-direction:row;
+ align-items:baseline;
+ flex-wrap:wrap;
+ gap:3px 8px;
+ flex:1 1 auto;
+ line-height:1.35;
+}
+.wallet-compact .payout-card-holder span{font-size:.745rem}
+.wallet-compact .payout-card-holder strong{font-size:.815rem;font-weight:600}
+.wallet-compact .payout-card-hint{font-size:.775rem;line-height:1.4}
+.wallet-compact .payout-bank-card--empty{gap:9px}
+.wallet-compact .payout-bank-card--empty .payout-card-add{margin-top:2px}
+.wallet-compact .wallet-movements{margin-top:13px}
+.wallet-compact .wallet-movements .section-head{margin-bottom:5px}
+.wallet-compact .wallet-movements .section-head h2{font-weight:650}
+.wallet-compact .wallet-movements .text-button{font-size:.79rem;min-height:38px}
+.wallet-compact .movement-list{padding:0 12px;border-radius:15px}
+.wallet-compact .wallet-movement-row{padding:0;border-bottom:1px solid #EEE8DF}
+.wallet-compact .wallet-movement-row:last-child{border-bottom:0}
+.wallet-compact .wallet-movement-row>.movement-detail{margin:0}
+.wallet-compact .wallet-movement-row>.movement-detail>summary{
+ display:grid;
+ grid-template-columns:34px minmax(0,1fr);
+ align-items:center;
+ column-gap:10px;
+ min-height:59px;
+ padding:8px 0;
+ border-radius:9px;
+ color:var(--ink);
+}
+.wallet-compact .wallet-movement-icon{
+ grid-column:1;
+ grid-row:1/3;
+ width:34px;
+ height:34px;
+ border-radius:11px;
+ display:grid;
+ place-items:center;
+ background:#EFF2EC;
+ color:#51775C;
+}
+.wallet-compact .wallet-movement-icon--invite{background:#F5EAE0;color:#9D633F}
+.wallet-compact .wallet-movement-icon--withdraw{background:#F2E8DD;color:#92613F}
+.wallet-compact .wallet-movement-icon--debit{background:#F8E8E6;color:#AD534B}
+.wallet-compact .wallet-movement-icon .icon{height:18px;width:18px;stroke-width:1.8}
+.wallet-compact .wallet-movement-row .movement-heading{
+ grid-column:2;
+ grid-row:1;
+ display:flex;
+ align-items:baseline;
+ flex-wrap:nowrap;
+ gap:5px;
+ min-width:0;
+}
+.wallet-compact .wallet-movement-row .movement-heading h2{
+ font-size:.82rem;
+ font-weight:600;
+ min-width:0;
+ flex:1 1 auto;
+ line-height:1.35;
+ overflow-wrap:anywhere;
+ display:-webkit-box;
+ -webkit-line-clamp:1;
+ -webkit-box-orient:vertical;
+ overflow:hidden;
+}
+.wallet-compact .wallet-movement-row .movement-heading>strong{
+ font-size:.91rem;
+ font-weight:650;
+ white-space:nowrap;
+ letter-spacing:-.025em;
+ flex:none;
+ margin-left:auto;
+}
+.wallet-compact .wallet-movement-row .movement-heading>.icon{width:13px;height:13px;flex:none;align-self:center}
+.wallet-compact .wallet-movement-row .movement-status{
+ grid-column:2;
+ grid-row:2;
+ display:block;
+ margin:0;
+ font-size:.73rem;
+ line-height:1.5;
+ color:var(--muted);
+}
+.wallet-compact .wallet-movement-row .movement-detail[open]{padding-bottom:8px}
+.wallet-compact .wallet-movement-row .movement-detail>p,
+.wallet-compact .wallet-movement-row .movement-detail>.summary-row{font-size:.81rem}
+.wallet-compact .wallet-movement-row .movement-detail>p:last-child{margin-bottom:0}
+.wallet-compact .wallet-manage{margin-top:7px}
+.wallet-compact .wallet-manage .menu-row{min-height:49px;padding:7px 0;gap:10px}
+.wallet-compact .wallet-manage .menu-row .icon:first-child{color:var(--accent);width:19px;height:19px}
+.wallet-compact .wallet-manage .menu-row>span{font-weight:600;font-size:.87rem}
+.wallet-compact .wallet-manage .menu-row small{font-size:.745rem;line-height:1.3;font-weight:400}
+.wallet-compact .wallet-summary{
+ margin-top:5px;
+ border-top:1px solid var(--line);
+}
+.wallet-compact .wallet-summary>summary{
+ display:flex;
+ align-items:center;
+ gap:8px;
+ min-height:44px;
+ font-size:.79rem;
+ color:var(--muted);
+}
+.wallet-compact .wallet-summary>summary>.icon{width:17px;height:17px;flex:none}
+.wallet-compact .wallet-summary>summary>.icon:last-child{margin-left:auto}
+.wallet-compact .wallet-summary .summary-content{font-size:.82rem}
+.wallet-compact .withdraw-progress{margin-top:10px;padding:11px 13px;border-radius:14px}
+.wallet-compact .withdraw-progress .progress-icon{width:33px;height:33px}
+@media(max-width:360px){
+ .wallet-compact .balance-main{padding:12px 13px!important}
+ .wallet-compact .balance-main>.amount{font-size:1.52rem}
+ .wallet-compact .balance-main>.primary{padding:8px 10px;font-size:.79rem}
+ .wallet-compact .waiting-grid>a{padding:9px 9px}
+ .wallet-compact .waiting-grid strong{font-size:1.02rem}
+ .wallet-compact .wallet-wait-label{font-size:.70rem;gap:4px}
+ .wallet-compact .payout-bank-card-top{grid-template-columns:38px minmax(0,1fr)}
+ .wallet-compact .payout-card-status{grid-column:2;justify-self:start}
+ .wallet-compact .wallet-movement-row .movement-heading>strong{font-size:.84rem}
+ .wallet-compact .wallet-movement-row .movement-heading h2{font-size:.79rem}
+}

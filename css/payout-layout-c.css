@@ -1,0 +1,118 @@
+/* Layout C: separated identity and readable account fields. Preview only. */
+.wallet-compact .payout-bank-card--detail{
+  padding:13px 14px 12px;
+  border-radius:16px;
+  background:#fffefc;
+  border:1px solid #ddd8cf;
+  box-shadow:0 2px 10px rgba(51,47,39,.045);
+}
+.wallet-compact .payout-detail-header{
+  display:flex;
+  align-items:center;
+  min-width:0;
+  gap:9px;
+}
+.wallet-compact .payout-detail-header>.payout-card-icon{
+  display:grid;
+  flex:0 0 34px;
+  width:34px;
+  height:34px;
+  place-items:center;
+  border-radius:10px;
+  background:#e8f1eb;
+  color:#246f50;
+}
+.wallet-compact .payout-detail-header>.payout-card-icon>.icon{
+  width:19px;
+  height:19px;
+}
+.wallet-compact .payout-detail-bank{
+  flex:1 1 auto;
+  min-width:0;
+  font-size:.93rem;
+  font-weight:650;
+  letter-spacing:-.025em;
+  color:#2c3029;
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+}
+.wallet-compact .payout-detail-header .payout-card-status{
+  flex:none;
+  display:inline-flex;
+  align-items:center;
+  gap:4px;
+  padding:5px 6px;
+  font-size:.715rem;
+  line-height:1.2;
+  font-weight:600;
+  border-radius:999px;
+  background:#e8f4eb;
+  color:#26714d;
+  white-space:nowrap;
+}
+.wallet-compact .payout-detail-header .payout-card-status>.icon{
+  height:14px;
+  width:14px;
+  stroke-width:2;
+}
+.wallet-compact .payout-bank-card--pending .payout-card-status{
+  background:#fff4dc;
+  color:#865f19;
+}
+.wallet-compact .payout-bank-card--rejected .payout-card-status{
+  background:#fbeceb;
+  color:#a34039;
+}
+.wallet-compact .payout-detail-fields{
+  display:grid;
+  grid-template-columns:minmax(90px,.84fr) minmax(0,1.16fr);
+  gap:14px;
+  padding:11px 0 0;
+  margin:11px 0 0;
+  border-top:1px solid #ece8e2;
+}
+.wallet-compact .payout-detail-field{
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+  min-width:0;
+  margin:0;
+}
+.wallet-compact .payout-detail-field dt{
+  color:#786e64;
+  font-size:.73rem;
+  font-weight:450;
+  line-height:1.35;
+}
+.wallet-compact .payout-detail-field dd{
+  font-size:.855rem;
+  line-height:1.4;
+  font-weight:650;
+  margin:0;
+  color:#292d2a;
+  min-width:0;
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+}
+.wallet-compact .payout-bank-card--detail .payout-bank-card-footer{
+  display:flex;
+  margin:10px 0 0;
+  padding:9px 0 0;
+  border-top:1px solid #ece8e2;
+  gap:8px;
+  flex-wrap:wrap;
+}
+.wallet-compact .payout-bank-card--detail .payout-card-hint{
+  font-size:.76rem;
+  line-height:1.4;
+}
+@media(max-width:350px){
+  .wallet-compact .payout-bank-card--detail{padding:11px 10px}
+  .wallet-compact .payout-detail-header{gap:7px}
+  .wallet-compact .payout-detail-bank{font-size:.85rem}
+  .wallet-compact .payout-detail-header .payout-card-status{font-size:.66rem;padding:4px 5px}
+  .wallet-compact .payout-detail-fields{gap:9px;grid-template-columns:minmax(80px,.8fr) minmax(0,1.2fr)}
+  .wallet-compact .payout-detail-field dd{font-size:.79rem}
+}
