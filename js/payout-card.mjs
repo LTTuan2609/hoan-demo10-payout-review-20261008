@@ -11,15 +11,27 @@ export function payoutWalletCard(account,count=account?1:0){
  const isBank=account.method==='BANK';
  const verified=account.status==='VERIFIED',rejected=account.status==='REJECTED',pending=account.status==='PENDING_VERIFICATION';
  const state=verified?'verified':rejected?'rejected':'pending';
- const label=verified?'Đã xác minh':rejected?'Cần sửa':pending?'Chờ xác minh':'Chưa xác minh';
+ const label=verified?'Đang dùng':rejected?'Cần sửa':pending?'Chờ kiểm tra':'Chưa kiểm tra';
  const marker=verified?'check':rejected?'alert':'clock';
  const identity=account.account_masked||{};
  const institution=isBank?bankName(identity.bank_code):'MoMo';
  const number=identity.account_number||identity.momo_phone||'Chưa có số tài khoản';
  const holder=identity.account_holder;
  const action=rejected?'<a class="payout-card-fix" href="#/payout/edit">Sửa thông tin '+icon('arrow')+'</a>':'';
- const hint=rejected?'Thông tin chưa được chấp nhận.':verified?'':pending?'Đang chờ xác minh để nhận tiền rút.':'Cần xác minh trước khi nhận tiền rút.';
- return `<section class="payout-account-section" aria-labelledby="wallet-payout-title">${heading}<div class="payout-bank-card payout-bank-card--${state}"><div class="payout-bank-card-top"><span class="payout-card-icon" aria-hidden="true">${icon(isBank?'bank':'wallet')}</span><div class="payout-card-identity"><strong>${esc(institution)}</strong><span class="payout-card-number">${esc(number)}</span></div><span class="payout-card-status payout-card-status--${state}">${icon(marker)}${label}</span></div>${holder||hint||action?`<div class="payout-bank-card-footer">${holder?`<p class="payout-card-holder"><span>Chủ tài khoản</span><strong>${esc(holder)}</strong></p>`:''}${hint?`<p class="payout-card-hint">${hint}</p>`:''}${action}</div>`:''}</div></section>`;
+ const hint=rejected?'Thông tin chưa được chấp nhận.':verified?'':pending?'Đang chờ kiểm tra tài khoản nhận tiền.':'Cần kiểm tra tài khoản trước khi nhận tiền rút.';
+ return '<section class="payout-account-section" aria-labelledby="wallet-payout-title">'+heading+
+ '<div class="payout-bank-card payout-bank-card--'+state+' payout-bank-card--detail">'+
+  '<div class="payout-detail-header">'+
+   '<span class="payout-card-icon" aria-hidden="true">'+icon(isBank?'bank':'wallet')+'</span>'+
+   '<strong class="payout-detail-bank">'+esc(institution)+'</strong>'+
+   '<span class="payout-card-status payout-card-status--'+state+'">'+icon(marker)+esc(label)+'</span>'+
+  '</div>'+
+  '<dl class="payout-detail-fields">'+
+   '<div class="payout-detail-field"><dt>Số tài khoản</dt><dd>'+esc(number)+'</dd></div>'+
+   '<div class="payout-detail-field"><dt>Chủ tài khoản</dt><dd title="'+esc(holder||'Chưa có thông tin')+'">'+esc(holder||'Chưa có thông tin')+'</dd></div>'+
+  '</dl>'+
+  (hint||action?'<div class="payout-bank-card-footer">'+(hint?'<p class="payout-card-hint">'+esc(hint)+'</p>':'')+action+'</div>':'')+
+ '</div></section>';
 }
 
 export function payoutSavedAccounts(s){
@@ -35,6 +47,6 @@ export function payoutSavedAccounts(s){
   const masked=info.account_number||info.momo_phone||'••••';
   const holder=info.account_holder?' · '+esc(info.account_holder):'';
   const id=esc(a.id||'');
-  return `<article class="payout-saved-item${current?' is-selected':''}"><div class="payout-saved-head"><span class="payout-card-icon" aria-hidden="true">${icon(a.method==='BANK'?'bank':'wallet')}</span><div class="payout-saved-copy"><h2>${esc(name)}</h2><p>${esc(masked)}${holder}</p></div>${current?'<span class="payout-active-label">Đang dùng</span>':''}</div><div class="payout-saved-bottom"><span class="payout-card-status payout-card-status--${state}">${icon(verified?'check':rejected?'alert':'clock')}${label}</span>${a.verification_note?`<p class="payout-saved-note">${esc(a.verification_note)}</p>`:''}<div class="payout-saved-actions">${!current&&verified?`<button type="button" class="payout-select" data-action="select-payout" data-id="${id}">Chọn tài khoản này</button>`:''}${rejected?'<a class="payout-select" href="#/payout/edit">Thêm tài khoản khác</a>':''}<button type="button" class="payout-remove" data-action="remove-payout" data-id="${id}" aria-label="Xóa tài khoản ${esc(name)} ${esc(masked)}">Xóa</button></div></div></article>`;
+  return `<article class="payout-saved-item${current?' is-selected':''}"><div class="payout-saved-head"><span class="payout-card-icon" aria-hidden="true">${icon(a.method==='BANK'?'bank':'wallet')}</span><div class="payout-saved-copy"><h2>${esc(name)}</h2></div>${current?'<span class="payout-active-label">Đang dùng</span>':''}</div><dl class="payout-saved-fields"><div class="payout-saved-field"><dt>Số tài khoản</dt><dd>${esc(masked)}</dd></div><div class="payout-saved-field"><dt>Chủ tài khoản</dt><dd>${esc(info.account_holder||'Chưa có thông tin')}</dd></div></dl><div class="payout-saved-bottom"><span class="payout-card-status payout-card-status--${state}">${icon(verified?'check':rejected?'alert':'clock')}${label}</span>${a.verification_note?`<p class="payout-saved-note">${esc(a.verification_note)}</p>`:''}<div class="payout-saved-actions">${!current&&verified?`<button type="button" class="payout-select" data-action="select-payout" data-id="${id}">Chọn tài khoản này</button>`:''}${rejected?'<a class="payout-select" href="#/payout/edit">Thêm tài khoản khác</a>':''}<button type="button" class="payout-remove" data-action="remove-payout" data-id="${id}" aria-label="Xóa tài khoản ${esc(name)} ${esc(masked)}">Xóa</button></div></div></article>`;
  }).join('')+'</section>';
 }

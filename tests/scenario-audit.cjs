@@ -33,7 +33,7 @@ const server=http.createServer((req,res)=>{const url=new URL(req.url,'http://x')
    if(scenario==='review'&&!await page.locator('.order-filters button').filter({hasText:'Đang kiểm tra'}).count())issues.push({width,scenario,type:'review-filter-missing'});
    await page.locator('.bottom-nav a[href="#/wallet"]').click();
    const wallet=await measure('wallet',scenario);
-   if(scenario==='account-pending'&&!wallet.main.includes('Chờ xác minh'))issues.push({width,scenario,type:'pending-payout-status-missing',walletText:wallet.main.slice(0,1450)});
+   if(scenario==='account-pending'&&!wallet.main.includes('Chờ kiểm tra'))issues.push({width,scenario,type:'pending-payout-status-missing',walletText:wallet.main.slice(0,1450)});
    if(scenario==='account-rejected'&&!wallet.main.includes('Cần sửa'))issues.push({width,scenario,type:'rejected-payout-status-missing'});
    if(scenario==='long-names'){
     await page.locator('.bottom-nav a[href="#/orders"]').click();

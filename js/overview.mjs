@@ -1,6 +1,6 @@
 import {cashbackBreakdown,walletMovements} from './earnings.mjs?v=20261008-w1';
 import {esc,money,date,icon,art,button,menu,note} from './ui.mjs?v=10';
-import {payoutWalletCard} from './payout-card.mjs?v=20261008-c3';
+import {payoutWalletCard} from './payout-card.mjs?v=20261009-restored1';
 
 const pendingPath=rows=>rows.length===1?'/withdrawals/'+esc(rows[0].id):'/withdrawals/pending';
 export function moneyOverview(w,pending=[]){return `<a class="quick-wallet quick-wallet-link" href="#/wallet" aria-label="Mở Ví của bạn. Có thể rút ${money(w.available)}. Đang ghi nhận ${money(w.pendingOrders)}. Chờ về Ví ${money(w.pendingRelease)}.">

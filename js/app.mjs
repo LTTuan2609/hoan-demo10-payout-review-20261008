@@ -3,7 +3,7 @@ import {createLinkController,createClipboardReader} from './link-controller.mjs?
 import {createFixture} from './fixtures.mjs?v=10';
 import {createStore} from './store.mjs?v=10';
 import {createDemoAdapter,parseWithdrawalAmount} from './adapter.mjs?v=10';
-import {screen} from './screens.mjs?v=20261009-f1';
+import {screen} from './screens.mjs?v=20261009-restored1';
 import {restorePayoutPreferences,savePayoutPreferences,clearPayoutPreferences} from './payout-preferences.mjs?v=1';
 import {esc,icon,button,note} from './ui.mjs?v=10';
 const browserStorage=(()=>{try{return window.localStorage}catch{return null}})();
