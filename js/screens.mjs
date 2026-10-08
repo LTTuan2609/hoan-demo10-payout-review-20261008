@@ -1,6 +1,6 @@
 import {cashbackBreakdown,ledgerScreen} from './earnings.mjs?v=10';
 import {home,wallet} from './overview.mjs?v=10';
-import {rankView} from './rank-view.mjs?v=20261008-r2';
+import {rankView} from './rank-view.mjs?v=20261008-ui2-v1';
 import {bankOptions,bankName,payoutSavedAccounts} from './payout-card.mjs?v=10';
 import {esc,money,date,icon,art,button,top,menu,note,status,badge,empty} from './ui.mjs?v=10';
 const section=(title,body,link='')=>`<section class="section"><div class="section-head"><h2>${title}</h2>${link}</div>${body}</section>`;
@@ -18,7 +18,20 @@ function orderTimeline(o){
  return `<ol class="timeline">${rows.map((t,i)=>{const info=[t.at?date(t.at):'',i===current?'Đang chờ':'',t.note&&!isGeneric(t)?esc(t.note):'',t.reason?esc(t.reason):''].filter(Boolean);return `<li class="${t.done?'done':''}"${i===current?' aria-current="step"':''}><span class="timeline-dot">${t.done?icon('check'):icon('clock')}</span><h3>${esc(t.label)}</h3>${info.length?`<p>${info.join('<br>')}</p>`:''}</li>`;}).join('')}${rejected?`<li class="terminal-rejected"><span class="timeline-dot">${icon('close')}</span><h3>Không được hoàn</h3><p>${esc(reason)}</p></li>`:''}</ol>${timingHelp}`;
 }
 const orderDetails=o=>`${cashbackBreakdown(o,{estimated:o.status==='PENDING'})}${o.financial_review_status==='REVIEW_REQUIRED'?note('Khoản đã ghi có vẫn được giữ trong ví trong lúc kiểm tra.','warning'):''}<h2>Tiến trình hoàn tiền</h2>${orderTimeline(o)}`;
-const row=(o,openOrders=[])=>`<details class="order-disclosure" data-order-id="${esc(o.order_sn)}"${openOrders.includes(o.order_sn)?' open':''}><summary class="product-row order-row">${art(o.image)}<div class="order-content"><div class="order-top"><h2 class="order-name">${esc(o.name)}</h2>${icon('chevron')}</div><div class="order-meta">${esc(o.order_sn)} · ${date(o.purchase_time)}</div><div class="order-bottom">${badge(...status(o))}<div class="order-amount"><b>${money(o.cashback_amount??o.est_cashback)}</b><span>${o.status==='PENDING'?'dự kiến':'tiền hoàn'}</span></div></div></div></summary><div class="order-inline-detail">${orderDetails(o)}</div></details>`;
+const orderProgress=o=>{
+ const state=orderState(o);
+ if(state==='REJECTED'||state==='REVIEW_REQUIRED'||!Array.isArray(o.timeline)||!o.timeline.length)return '';
+ const done=o.timeline.filter(t=>t.done).length;
+ const total=o.timeline.length;
+ return `<span class="order-mini-progress" aria-label="${done} trên ${total} bước hoàn tiền"><span class="order-mini-rail" aria-hidden="true">${o.timeline.map((t,i)=>`<i class="${t.done?'done':i===done?'next':''}"></i>`).join('')}</span><span class="order-mini-count" aria-hidden="true">${done}/${total}</span></span>`;
+};
+const orderVisualStatus=o=>{
+ const state=orderState(o);
+ const [label,tone]=status(o);
+ const symbol=state==='RELEASED'?'check':state==='REJECTED'?'close':state==='REVIEW_REQUIRED'?'alert':'clock';
+ return `<span class="order-visual-status order-visual-status--${tone}">${icon(symbol)}<span>${esc(label)}</span></span>`;
+};
+const row=(o,openOrders=[])=>`<details class="order-disclosure" data-state="${esc(orderState(o))}" data-order-id="${esc(o.order_sn)}"${openOrders.includes(o.order_sn)?' open':''}><summary class="product-row order-row">${art(o.image)}<div class="order-content"><div class="order-top"><h2 class="order-name">${esc(o.name)}</h2>${icon('chevron')}</div><div class="order-meta">${esc(o.order_sn)} · ${date(o.purchase_time)}</div><div class="order-bottom"><div class="order-status-stack">${orderVisualStatus(o)}${orderProgress(o)}</div><div class="order-amount"><b>${money(o.cashback_amount??o.est_cashback)}</b><span>${o.status==='PENDING'?'dự kiến':'tiền hoàn'}</span></div></div></div></summary><div class="order-inline-detail">${orderDetails(o)}</div></details>`;
 const account=a=>a?`<div class="account-summary"><div class="account-summary-header">${icon('bank')}<h3>${a.method==='BANK'?esc(bankName(a.account_masked.bank_code)):'MoMo'}</h3>${badge(a.status==='VERIFIED'?'Đã xác minh':a.status==='REJECTED'?'Cần sửa':'Chờ xác minh',a.status==='VERIFIED'?'green':a.status==='REJECTED'?'red':'amber')}</div><strong>${esc(a.account_masked.account_number||a.account_masked.momo_phone)}</strong><p>${esc(a.account_masked.account_holder||'Tài khoản MoMo')}</p>${a.verification_note?`<p>${esc(a.verification_note)}</p>`:''}</div>`:note('Bạn chưa thêm tài khoản nhận tiền.');
 const faq=(q,a)=>`<details class="accordion"><summary>${q}${icon('chevron')}</summary><p>${a}</p></details>`;
 export function screen(path,s,v={}){

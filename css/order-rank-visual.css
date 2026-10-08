@@ -1,0 +1,147 @@
+/* Visual refinement for Orders and Membership only. No changes to global layout. */
+.order-list .order-row{
+ min-height:132px;
+ height:auto;
+ padding:13px 0!important;
+ align-items:center;
+ gap:12px;
+}
+.order-list .order-row .art{
+ flex:0 0 60px;
+ width:60px;
+ height:73px;
+ border-radius:14px;
+ border:1px solid #DED7CB;
+ background:#EFEBE4;
+ overflow:hidden;
+ box-shadow:0 3px 10px rgba(59,47,33,.07);
+}
+.order-list .order-row .art svg{display:block;width:100%;height:100%}
+.order-list .order-row .order-content{min-width:0;flex:1}
+.order-list .order-row .order-name{font-weight:600;line-height:1.45}
+.order-list .order-row .order-meta{font-size:.76rem;letter-spacing:.005em;color:var(--muted)}
+.order-list .order-row .order-bottom{
+ align-items:center;
+ flex-wrap:nowrap;
+ justify-content:space-between;
+ gap:7px;
+ margin-top:8px;
+}
+.order-status-stack{
+ display:flex;
+ flex-direction:column;
+ align-items:flex-start;
+ min-width:0;
+ gap:7px;
+ flex:1 1 auto;
+}
+.order-visual-status{
+ display:inline-flex;
+ align-items:center;
+ gap:5px;
+ max-width:100%;
+ padding:5px 8px;
+ border-radius:999px;
+ font-size:.75rem;
+ font-weight:600;
+ white-space:nowrap;
+ line-height:1.25;
+}
+.order-visual-status .icon{width:14px;height:14px;flex:none;stroke-width:2}
+.order-visual-status--amber{color:#8B5F20;background:#FBF0D7}
+.order-visual-status--green{color:#236847;background:#E8F4E9}
+.order-visual-status--red{color:#A0443C;background:#F9E9E6}
+.order-mini-progress{
+ display:flex;
+ align-items:center;
+ gap:7px;
+ min-height:8px;
+ color:#7B756B;
+}
+.order-mini-rail{display:grid;grid-template-columns:repeat(5,11px);gap:3px;align-items:center}
+.order-mini-rail i{height:5px;border-radius:999px;background:#E2DDD3}
+.order-mini-rail i.done{background:#B48C4C}
+.order-mini-rail i.next{background:#D5C4A7}
+.order-disclosure[data-state="VALIDATED"] .order-mini-rail i.done{background:#45876A}
+.order-disclosure[data-state="RELEASED"] .order-mini-rail i.done{background:#33815C}
+.order-mini-count{font-size:.66rem;font-variant-numeric:tabular-nums;color:#777269;font-weight:600}
+.order-list .order-row .order-amount{flex:0 0 auto;align-self:center;text-align:right}
+.order-list .order-row .order-amount b{font-weight:700;letter-spacing:-.045em;font-size:1rem;color:#285F47}
+.order-list .order-row .order-amount>span{font-size:.75rem;margin-top:3px}
+.order-disclosure[open]>.order-row{background:transparent}
+.order-disclosure[open]>.order-row .order-name{font-weight:650}
+.order-inline-detail{border-top:1px dashed #E2DCCE;padding-top:12px;margin-top:2px}
+.order-inline-detail .timeline{margin-top:16px}
+.order-inline-detail .timeline li{padding-left:39px;padding-bottom:15px}
+.order-inline-detail .timeline-dot{
+ width:26px;height:26px;
+ border-radius:10px;
+ border-color:#D9D4C9;
+ background:#F7F4EE;
+}
+.order-inline-detail .timeline .done .timeline-dot{
+ border-color:#3C7856;background:#3C7856;color:white;
+}
+.order-inline-detail .timeline li[aria-current="step"] .timeline-dot{
+ background:#FBF0D7;border:1.5px solid #B98732;color:#895B19;
+ box-shadow:0 0 0 3px #FBF0D766;
+}
+.order-inline-detail .timeline li::before{width:2px;background:#DDD8CF;left:12px}
+.order-inline-detail .timeline li.done::before{background:#75A48B}
+.order-inline-detail .timeline h3{font-weight:600}
+.order-inline-detail .timeline li[aria-current="step"] h3{font-weight:700}
+.order-inline-detail .earnings-breakdown{border-radius:12px}
+.order-inline-detail .timeline-help{margin-top:6px}
+/* Tiers are illustrated with four distinct vector marks, not numbered text. */
+.member-symbol{width:100%;height:100%;color:inherit;display:block}
+.member-medal .member-symbol{width:50px;height:50px}
+.member-hero .member-medal{
+ box-shadow:inset 0 1px 0 rgba(255,255,255,.75);
+ filter:drop-shadow(0 6px 12px rgba(62,52,39,.13));
+}
+.member-hero--bac{background:linear-gradient(126deg,#FAFBFD 0%,#E4E8EE 70%,#C5CAD4 100%)}
+.member-hero--vang{background:linear-gradient(126deg,#FFF9EC 0%,#F1DDAF 70%,#D9B262 100%)}
+.member-hero--kimcuong{background:linear-gradient(126deg,#F5FCFF 0%,#DCECF1 70%,#ACD5E2 100%)}
+.member-hero--dong{background:linear-gradient(126deg,#FFF8EF 0%,#F0D5BD 70%,#D1A17A 100%)}
+.member-emblem{
+ border-radius:15px;
+ background:linear-gradient(135deg,#F6DCC8,#CF9474);
+ box-shadow:inset 0 1px 0 rgba(255,255,255,.75),0 2px 7px rgba(59,48,37,.08);
+ border:1px solid rgba(80,62,43,.08);
+}
+.member-emblem .member-symbol{width:30px;height:30px}
+.member-level--dong .member-emblem{border-radius:50%;background:linear-gradient(145deg,#F8E2C5,#DB9C70)}
+.member-level--bac .member-emblem{border-radius:14px;background:linear-gradient(145deg,#F9FAFD,#B9C2D0)}
+.member-level--vang .member-emblem{border-radius:14px;background:linear-gradient(145deg,#FFF7DC,#ECC46C)}
+.member-level--kimcuong .member-emblem{border-radius:13px;background:linear-gradient(145deg,#F4FCFF,#B8E2EF)}
+.member-level--dong .member-symbol{color:#8C573B}
+.member-level--bac .member-symbol{color:#5C6680}
+.member-level--vang .member-symbol{color:#906124}
+.member-level--kimcuong .member-symbol{color:#3C8192}
+.member-level{transition:border-color .18s ease,background-color .18s ease}
+.member-level.current{box-shadow:inset 3px 0 0 #B87856,0 4px 15px rgba(88,69,47,.045)}
+.member-applied{
+ display:inline-flex;
+ border-radius:999px;
+ padding:5px 8px;
+ background:#FCF1D7;
+ color:#886019;
+ font-size:.7rem;
+ font-weight:600;
+ white-space:nowrap;
+}
+.member-section-heading>span{font-size:.72rem;white-space:nowrap}
+.member-hero h2{font-family:var(--font);font-size:2.6rem;font-weight:700;letter-spacing:-.055em}
+.member-hero .member-bonus strong{font-weight:700}
+.member-progress-track{height:10px}
+.member-progress-track>span{box-shadow:0 0 0 1px rgba(131,73,40,.12) inset}
+@media(max-width:375px){
+ .order-list .order-row{gap:9px;min-height:130px}
+ .order-list .order-row .art{flex-basis:51px;width:51px;height:66px}
+ .order-visual-status{font-size:.7rem;padding:5px 6px}
+ .order-mini-rail{grid-template-columns:repeat(5,9px)}
+ .order-list .order-row .order-amount b{font-size:.92rem}
+ .member-section-heading>span{font-size:.68rem}
+ .member-applied{font-size:.65rem;padding:4px 6px}
+}
+@media(prefers-reduced-motion:reduce){.member-level{transition:none}}
