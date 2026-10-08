@@ -26,6 +26,7 @@ jobs:
           export CHROME_PATH="$(command -v google-chrome || command -v google-chrome-stable)"
           if [ -z "$CHROME_PATH" ]; then echo "Google Chrome missing"; exit 1; fi
           npm run test:critical
+          npm run test:ux
           npm run test:scenarios
           npm run test:orders
           npm run test:tabs

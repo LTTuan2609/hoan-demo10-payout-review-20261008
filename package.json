@@ -10,7 +10,8 @@
     "test:orders": "node tests/order-layout.cjs",
     "test:tabs": "node tests/tab-ghost.cjs",
     "test:accessibility": "node tests/interaction-accessibility.cjs",
-    "test:axe": "node tests/axe-audit.cjs"
+    "test:axe": "node tests/axe-audit.cjs",
+    "test:ux": "node tests/final-ux.cjs"
   },
   "devDependencies": {
     "axe-core": "4.10.3",
